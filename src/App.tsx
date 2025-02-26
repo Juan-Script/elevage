@@ -1,12 +1,11 @@
 import "./App.css"
+import Popup from "./popup/popup"
 
 function App() {
   return (
-    <div
-      className="bg-red-500"
-    >
-      WAAAA
-    </div>
+    <>
+      <Popup />
+    </>
   )
 }
 

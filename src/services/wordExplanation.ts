@@ -10,27 +10,37 @@ export async function getWordExplanation(word: string, level: string = 'Básico'
         }
 
         const model = new ChatGroq({
-            temperature: 0,
+            temperature: 0.7,
             model: "mixtral-8x7b-32768",
             maxTokens: level === 'Extenso' ? 900 : level === 'Moderado' ? 750 : 500,
             apiKey: apiKey
         });
 
-        const systemPrompt = "Eres un asistente experto en explicar palabras y términos en español de manera clara y concisa.";
+        const systemPrompt = "Eres un asistente experto en explicar palabras y términos en español de manera clara y concisa. Cada vez que expliques una palabra, debes hacerlo de una manera diferente y única, enfocándote en distintos aspectos o usando diferentes enfoques pedagógicos.";
         let userPrompt = "";
+
+        const enfoques = [
+            "Enfócate en el uso práctico y cotidiano",
+            "Explica desde una perspectiva más académica o técnica",
+            "Usa analogías y comparaciones para explicar",
+            "Explica a través de su etimología e historia",
+            "Utiliza ejemplos de la vida real y situaciones comunes"
+        ];
+
+        const enfoqueAleatorio = enfoques[Math.floor(Math.random() * enfoques.length)];
 
         switch (level) {
             case 'Básico':
-                userPrompt = "Da una explicación breve y simple de la palabra: {word}. Incluye solo la definición básica y un ejemplo corto.";
+                userPrompt = `Da una explicación breve y simple de la palabra: {word}. ${enfoqueAleatorio}. Incluye solo la definición básica y un ejemplo corto.`;
                 break;
             case 'Moderado':
-                userPrompt = "Explica la palabra: {word}. Incluye definición, ejemplos y contexto de uso común.";
+                userPrompt = `Explica la palabra: {word}. ${enfoqueAleatorio}. Incluye definición, ejemplos y contexto de uso común.`;
                 break;
             case 'Extenso':
-                userPrompt = "Proporciona una explicación detallada de la palabra: {word}. Incluye definición completa, múltiples ejemplos, contexto histórico si es relevante, sinónimos, antónimos y usos en diferentes situaciones.";
+                userPrompt = `Proporciona una explicación detallada de la palabra: {word}. ${enfoqueAleatorio}. Incluye definición completa, múltiples ejemplos, contexto histórico si es relevante, sinónimos, antónimos y usos en diferentes situaciones.`;
                 break;
             default:
-                userPrompt = "Explica la palabra: {word}. Incluye definición, ejemplos y contexto.";
+                userPrompt = `Explica la palabra: {word}. ${enfoqueAleatorio}. Incluye definición, ejemplos y contexto.`;
         }
 
         const prompt = ChatPromptTemplate.fromMessages([

@@ -1,4 +1,4 @@
-import { HiOutlineBookmark, HiOutlineSun, HiOutlineViewGrid, HiOutlineMoon } from "react-icons/hi";
+import { HiOutlineSun, HiOutlineMoon } from "react-icons/hi";
 import { HiMiniXMark } from "react-icons/hi2";
 import { useState } from "react";
 
@@ -35,13 +35,18 @@ export default function TopBar() {
                 <div
                     className="flex items-center gap-[10px] text-[15px]"
                 >
+
+                    
+                    {/* 
+                     Futura implementación de para historial de explicaciones
+                     
                     <HiOutlineBookmark
                         className="cursor-pointer hover:opacity-70"
                     />
 
                     <HiOutlineViewGrid
                         className="cursor-pointer hover:opacity-70"
-                    />
+                    /> */}
 
                     {isLightMode ? (
                         <HiOutlineSun

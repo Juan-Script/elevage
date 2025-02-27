@@ -2,6 +2,23 @@
 
 Elevage es una aplicación web moderna desarrollada con React y TypeScript, diseñada para proporcionar una experiencia de usuario fluida y elegante. Su principal objetivo es ayudar a los usuarios a entender palabras concretas de una manera rápida y sencilla, funcionando como una herramienta eficiente de consulta y aprendizaje de vocabulario.
 
+## 🎯 Funcionamiento
+
+1. **Selección de Palabra**: 
+   - Selecciona cualquier palabra o texto en tu navegador
+   - Haz clic derecho sobre la selección
+   - Elige la opción "Explicar con Elevage" en el menú contextual
+
+2. **Niveles de Explicación**:
+   - **Básico**: Explicación concisa con definición básica y ejemplo corto
+   - **Moderado**: Explicación más detallada con ejemplos y contexto de uso
+   - **Extenso**: Explicación completa con ejemplos, contexto histórico, sinónimos y antónimos
+
+3. **Funciones Adicionales**:
+   - Botón "Otra explicación" para obtener diferentes perspectivas de la misma palabra
+   - Opción de copiar la explicación al portapapeles
+   - Interfaz adaptable y fácil de usar
+
 ## 🚀 Características
 
 - Interfaz de usuario moderna con Tailwind CSS

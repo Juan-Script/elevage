@@ -7,15 +7,24 @@ export default defineConfig({
   build: {
     rollupOptions: {
       input: {
-        main: 'src/popup/popup.html',
+        popup: 'src/popup/popup.html',
         background: 'src/background/background.ts',
         content: 'src/content/content.ts'
       },
       output: {
-        entryFileNames: '[name].js',
-        chunkFileNames: '[name].js',
-        assetFileNames: '[name].[ext]'
+        entryFileNames: (chunkInfo) => {
+          // Los archivos principales van a la raíz
+          if (['background', 'content'].includes(chunkInfo.name)) {
+            return '[name].js';
+          }
+          return 'assets/[name].js';
+        },
+        chunkFileNames: 'assets/[name]-[hash].js',
+        assetFileNames: 'assets/[name].[ext]'
       }
+    },
+    modulePreload: {
+      polyfill: false
     }
   }
 })

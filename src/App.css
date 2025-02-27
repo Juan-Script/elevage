@@ -1,1 +1,44 @@
-@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    font-family: 'Montserrat', system-ui, sans-serif;
+  }
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root, html, body, #root {
+  border-radius: 12px !important;
+  overflow: hidden !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
+}
+
+body {
+  width: 100%;
+  min-height: 100vh;
+  background-color: white;
+  font-family: 'Montserrat', system-ui, sans-serif;
+}
+
+/* @media (prefers-color-scheme: dark) {
+  body {
+    background-color: #1a1a1a;
+    color: #ffffff;
+  }
+} */
+
+/* Estilo para hacer la ventana arrastrable */
+.titlebar {
+  -webkit-app-region: drag;
+  app-region: drag;
+  cursor: move;
+}

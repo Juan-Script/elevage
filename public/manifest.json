@@ -11,8 +11,13 @@
   "permissions": [
     "activeTab",
     "scripting",
-    "storage"
+    "storage",
+    "contextMenus"
   ],
+  "web_accessible_resources": [{
+    "resources": ["popup.html", "assets/*"],
+    "matches": ["<all_urls>"]
+  }],
   "background": {
     "service_worker": "background.js",
     "type": "module"

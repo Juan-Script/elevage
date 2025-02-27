@@ -3,7 +3,7 @@
     "version": "1.0.0",
     "manifest_version": 3,
     "action": {
-      "default_popup": "src/popup/popup.html"
+      "default_popup": null
     },
     "icons": {
       "128": "logo.png"
@@ -11,7 +11,8 @@
     "permissions": [
       "activeTab",
       "scripting",
-      "storage"
+      "storage",
+      "tabs"
     ],
     "background": {
       "service_worker": "background.js",

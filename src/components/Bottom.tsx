@@ -87,7 +87,9 @@ export default function Bottom({ selectedText, explanation, level, onRegenerateE
         </div>
       </div>
 
-      <div className="flex gap-[6px] items-center">
+      <div
+        className="flex gap-[6px] items-center"
+      >
         <HiOutlineBookmark
           title="Guardar explicación"
           className="text-[16px] text-[#266966] cursor-pointer hover:opacity-70"
@@ -98,8 +100,12 @@ export default function Bottom({ selectedText, explanation, level, onRegenerateE
           onClick={explanation ? handleCopy : undefined}
           className={`flex py-[5px] px-[10px] gap-[3px] rounded-full text-[#FFF] bg-[#266966] relative ${explanation ? 'cursor-pointer hover:shadow-md' : 'opacity-50 cursor-not-allowed'}`}
         >
-          <HiOutlineDuplicate className="text-[16px]" />
-          <div className="text-[14px]">
+          <HiOutlineDuplicate
+            className="text-[16px]"
+          />
+          <div
+            className="text-[14px]"
+          >
             {copyFeedback ? '¡Copiado!' : 'Copiar'}
           </div>
         </div>

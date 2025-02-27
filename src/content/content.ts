@@ -13,7 +13,6 @@ function createIframe() {
     iframe.src = chrome.runtime.getURL('src/popup/popup.html');
     document.body.appendChild(iframe);
 
-    // Hacer el iframe arrastrable
     iframe.addEventListener('mousedown', startDragging);
     document.addEventListener('mousemove', drag);
     document.addEventListener('mouseup', stopDragging);
@@ -49,7 +48,6 @@ function stopDragging() {
     iframe.style.transition = 'all 0.3s ease';
 }
 
-// Escuchar el clic en el icono de la extensión
 chrome.runtime.onMessage.addListener((message) => {
     if (message.type === 'TOGGLE_IFRAME') {
         if (!iframe) {
@@ -60,7 +58,6 @@ chrome.runtime.onMessage.addListener((message) => {
     }
 });
 
-// Manejar la selección de texto
 function handleTextSelection() {
     const selectedText = window.getSelection()?.toString().trim();
     

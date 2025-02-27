@@ -7,7 +7,7 @@ export const WordExplainer: React.FC = () => {
 
     const handleTextSelection = async () => {
         const selectedText = window.getSelection()?.toString().trim();
-        
+
         if (selectedText) {
             setLoading(true);
             try {
@@ -22,7 +22,7 @@ export const WordExplainer: React.FC = () => {
         }
     };
 
-  useEffect(() => {
+    useEffect(() => {
         document.addEventListener('mouseup', handleTextSelection);
         return () => {
             document.removeEventListener('mouseup', handleTextSelection);
@@ -30,12 +30,28 @@ export const WordExplainer: React.FC = () => {
     }, []);
 
     return (
-        <div className="fixed bottom-4 right-4 max-w-md bg-white shadow-lg rounded-lg p-4">
-            {loading && <div className="text-gray-600">Cargando explicación...</div>}
+        <div
+            className="fixed bottom-4 right-4 max-w-md bg-white shadow-lg rounded-lg p-4"
+        >
+            {loading &&
+                <div
+                    className="text-gray-600"
+                >
+                    Cargando explicación...
+                </div>
+            }
             {!loading && explanation && (
                 <div>
-                    <h3 className="text-lg font-semibold mb-2">Explicación:</h3>
-                    <p className="text-gray-700">{explanation}</p>
+                    <h3
+                        className="text-lg font-semibold mb-2"
+                    >
+                        Explicación:
+                    </h3>
+                    <p
+                        className="text-gray-700"
+                    >
+                        {explanation}
+                    </p>
                 </div>
             )}
         </div>

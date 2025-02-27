@@ -81,14 +81,16 @@ export default function Content() {
   }, [generateExplanation]);
 
   return (
-    <div className="flex flex-col h-full relative">
+    <div
+      className="flex flex-col h-full relative"
+    >
       <TopBar
         selectedText={selectedText}
         explanation={explanation}
         level={selectedLevel}
         onShowSaved={() => setShowSaved(true)}
       />
-      
+
       <AnimatePresence>
         {showSaved ? (
           <SavedExplanations onClose={() => setShowSaved(false)} />
@@ -118,22 +120,40 @@ export default function Content() {
                 }
               }}
             />
-            <div className="flex-1 mt-4 overflow-hidden">
+            <div
+              className="flex-1 mt-4 overflow-hidden"
+            >
               {selectedText ? (
-                <div className="h-full flex flex-col p-4 bg-gray-50 dark:bg-gray-800 rounded-lg transition-colors duration-300">
-                  <div className="flex w-fit gap-[5px] p-[10px] border-[1px] border-solid border-[#F0F0F0] rounded-[8px] py-[10px] mx-auto shadow-md my-[10px]">
-                    <p className="mt-2 text-[14px] text-gray-700 dark:text-gray-300 font-bold mx-auto">{selectedText}</p>
+                <div
+                  className="h-full flex flex-col p-4 bg-gray-50 dark:bg-gray-800 rounded-lg transition-colors duration-300"
+                >
+                  <div
+                    className="flex w-fit gap-[5px] p-[10px] border-[1px] border-solid border-[#F0F0F0] rounded-[8px] py-[10px] mx-auto shadow-md my-[10px]"
+                  >
+                    <p
+                      className="mt-2 text-[14px] text-gray-700 dark:text-gray-300 font-bold mx-auto"
+                    >
+                      {selectedText}
+                    </p>
                   </div>
 
                   {isLoading ? (
-                    <div className="flex flex-col justify-center items-center mt-4 bg-gradient-to-b from-blue-100 to-blue-300 dark:from-blue-800 dark:to-blue-600 rounded-lg p-8 py-[70px]">
-                      <PulseLoader color="#266966" size={15} margin={5} speedMultiplier={0.8} />
-                      <p className="mt-6 text-center text-gray-700 dark:text-gray-300">
+                    <div
+                      className="flex flex-col justify-center items-center mt-4 bg-gradient-to-b from-blue-100 to-blue-300 dark:from-blue-800 dark:to-blue-600 rounded-lg p-8 py-[70px]"
+                    >
+                      <PulseLoader
+                        color="#266966" size={15} margin={5} speedMultiplier={0.8}
+                      />
+                      <p
+                        className="mt-6 text-center text-gray-700 dark:text-gray-300"
+                      >
                         Preparando explicación... <br />Esto llevará solo unos segundos
                       </p>
                     </div>
                   ) : (
-                    <AnimatePresence mode="wait">
+                    <AnimatePresence
+                      mode="wait"
+                    >
                       {explanation && (
                         <motion.div
                           key="explanation"
@@ -169,7 +189,9 @@ export default function Content() {
                   )}
                 </div>
               ) : (
-                <div className="text-center text-gray-500 dark:text-gray-400 py-8">
+                <div
+                  className="text-center text-gray-500 dark:text-gray-400 py-8"
+                >
                   Seleccione un párrafo o palabra
                 </div>
               )}
@@ -178,7 +200,9 @@ export default function Content() {
         )}
       </AnimatePresence>
 
-      <div className="sticky bottom-0 bg-white dark:bg-gray-900 pt-2">
+      <div
+        className="sticky bottom-0 bg-white dark:bg-gray-900 pt-2"
+      >
         <Bottom
           selectedText={selectedText}
           onRegenerateExplanation={handleRegenerateExplanation}

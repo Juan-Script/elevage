@@ -28,14 +28,7 @@ body {
   font-family: 'Montserrat', system-ui, sans-serif;
 }
 
-/* @media (prefers-color-scheme: dark) {
-  body {
-    background-color: #1a1a1a;
-    color: #ffffff;
-  }
-} */
 
-/* Estilo para hacer la ventana arrastrable */
 .titlebar {
   -webkit-app-region: drag;
   app-region: drag;

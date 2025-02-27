@@ -1,6 +1,5 @@
-import { HiOutlineSun, HiOutlineMoon, HiOutlineViewGrid } from "react-icons/hi";
+import { HiOutlineViewGrid } from "react-icons/hi";
 import { HiMiniXMark } from "react-icons/hi2";
-import { useState } from "react";
 
 interface TopBarProps {
     selectedText?: string;
@@ -10,14 +9,9 @@ interface TopBarProps {
 }
 
 export default function TopBar({ onShowSaved }: TopBarProps) {
-    const [isLightMode, setIsLightMode] = useState(true);
 
     const handleClose = () => {
         window.close();
-    };
-
-    const toggleColorMode = () => {
-        setIsLightMode(!isLightMode);
     };
 
     return (
@@ -47,18 +41,6 @@ export default function TopBar({ onShowSaved }: TopBarProps) {
                         onClick={onShowSaved}
                         title="Ver explicaciones guardadas"
                     />
-
-                    {isLightMode ? (
-                        <HiOutlineSun
-                            className="cursor-pointer hover:opacity-70"
-                            onClick={toggleColorMode}
-                        />
-                    ) : (
-                        <HiOutlineMoon
-                            className="cursor-pointer hover:opacity-70"
-                            onClick={toggleColorMode}
-                        />
-                    )}
 
                     <HiMiniXMark
                         className="cursor-pointer hover:opacity-70"

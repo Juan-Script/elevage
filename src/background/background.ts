@@ -3,7 +3,6 @@ interface TextMessage {
     text: string;
 }
 
-// Crear el menú contextual
 chrome.runtime.onInstalled.addListener(() => {
     chrome.contextMenus.create({
         id: 'explain-with-elevage',
@@ -12,23 +11,18 @@ chrome.runtime.onInstalled.addListener(() => {
     });
 });
 
-// Manejar el clic en el menú contextual
 chrome.contextMenus.onClicked.addListener((info) => {
     if (info.menuItemId === 'explain-with-elevage' && info.selectionText) {
-        // Guardar el texto seleccionado
         chrome.storage.local.set({ selectedText: info.selectionText }, () => {
-            // Abrir el popup
             chrome.action.openPopup();
         });
     }
 });
 
-// Escuchamos los mensajes del content script
 chrome.runtime.onMessage.addListener((message: TextMessage, _sender, _sendResponse) => {
     console.log('Mensaje recibido en background:', message);
 
     if (message.type === 'TEXT_SELECTED') {
-        // Reenviamos el mensaje a todos los listeners
         chrome.runtime.sendMessage({
             type: 'UPDATE_SELECTED_TEXT',
             text: message.text
@@ -37,7 +31,6 @@ chrome.runtime.onMessage.addListener((message: TextMessage, _sender, _sendRespon
         });
     }
 
-    // Importante: retornar true si vamos a usar sendResponse de forma asíncrona
     return true;
 });
 

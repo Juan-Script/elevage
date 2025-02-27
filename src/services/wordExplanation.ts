@@ -1,6 +1,6 @@
 import { ChatGroq } from "@langchain/groq";
 import { ChatPromptTemplate } from "@langchain/core/prompts";
-import { GROQ_API_KEY } from "../config";
+import { GROQ_API_KEY } from "../config/config";
 
 export async function getWordExplanation(word: string, level: string = 'Básico'): Promise<string> {
     try {

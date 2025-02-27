@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
-import { getWordExplanation } from '../services/wordExplanation';
+import { getWordExplanation } from '../shared/services/langChain.service';
+
 
 export const WordExplainer: React.FC = () => {
     const [explanation, setExplanation] = useState<string>('');

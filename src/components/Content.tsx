@@ -1,6 +1,5 @@
 import { useEffect, useState, useCallback } from 'react';
 import { PulseLoader } from 'react-spinners';
-import { getWordExplanation } from '../services/wordExplanation';
 import Bottom from './Bottom';
 import LevelSelector from './LevelSelector';
 import TopBar from './TopBar';
@@ -9,6 +8,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { TextMessage } from '../shared/utils/Types/TextMessageTypes';
 import { LocalStorageService } from '../shared/services/localStorage.service';
 import { ExplanationTypes } from '../shared/utils/Types/ExplanationTypes';
+import { getWordExplanation } from '../shared/services/langChain.service';
 
 interface MessageResponse {
   success: boolean;

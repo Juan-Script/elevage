@@ -24,4 +24,4 @@ dist-ssr
 *.sw?
 
 # Config files
-src/config/config.ts
+src/config.ts

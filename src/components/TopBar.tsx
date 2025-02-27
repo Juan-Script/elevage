@@ -1,8 +1,15 @@
-import { HiOutlineSun, HiOutlineMoon } from "react-icons/hi";
+import { HiOutlineSun, HiOutlineMoon, HiOutlineViewGrid } from "react-icons/hi";
 import { HiMiniXMark } from "react-icons/hi2";
 import { useState } from "react";
 
-export default function TopBar() {
+interface TopBarProps {
+    selectedText?: string;
+    explanation?: string;
+    level?: string;
+    onShowSaved: () => void;
+}
+
+export default function TopBar({ onShowSaved }: TopBarProps) {
     const [isLightMode, setIsLightMode] = useState(true);
 
     const handleClose = () => {
@@ -33,20 +40,13 @@ export default function TopBar() {
                 </div>
 
                 <div
-                    className="flex items-center gap-[10px] text-[15px]"
+                    className="flex items-center gap-[10px] text-[16px]"
                 >
-
-                    
-                    {/* 
-                     Futura implementación de para historial de explicaciones
-                     
-                    <HiOutlineBookmark
-                        className="cursor-pointer hover:opacity-70"
-                    />
-
                     <HiOutlineViewGrid
                         className="cursor-pointer hover:opacity-70"
-                    /> */}
+                        onClick={onShowSaved}
+                        title="Ver explicaciones guardadas"
+                    />
 
                     {isLightMode ? (
                         <HiOutlineSun

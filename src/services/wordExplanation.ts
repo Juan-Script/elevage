@@ -1,10 +1,9 @@
 import { ChatGroq } from "@langchain/groq";
 import { ChatPromptTemplate } from "@langchain/core/prompts";
-import { GROQ_API_KEY } from "../config";
 
 export async function getWordExplanation(word: string, level: string = 'Básico'): Promise<string> {
     try {
-        const apiKey = GROQ_API_KEY;
+        const apiKey = import.meta.env.VITE_GROQ_API_KEY;
         if (!apiKey) {
             throw new Error('GROQ_API_KEY no está configurada en las variables de entorno');
         }

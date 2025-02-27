@@ -128,10 +128,10 @@ export default function Content() {
                   className="h-full flex flex-col p-4 bg-gray-50 dark:bg-gray-800 rounded-lg transition-colors duration-300"
                 >
                   <div
-                    className="flex w-fit gap-[5px] p-[8px] border-[1px] border-solid border-[#F0F0F0] rounded-[8px] py-[10px] mx-auto shadow-md my-[5px]"
+                    className="flex w-fit px-[8px] py-[4px] border-[1px] border-solid border-[#F0F0F0] rounded-[8px] mx-auto shadow-md my-[5px]"
                   >
                     <p
-                      className="mt-2 text-[14px] text-gray-700 dark:text-gray-300 font-bold mx-auto"
+                      className="mt-2 text-[14px] text-gray-700 dark:text-gray-300 font-[600]"
                     >
                       {selectedText}
                     </p>
@@ -167,7 +167,7 @@ export default function Content() {
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
                             transition={{ delay: 0.2 }}
-                            className="text-lg font-semibold mb-2 text-[#266966]"
+                            className="text-lg font-semibold mb-2 text-[#266966] mx-auto"
                           >
                             Explicación:
                           </motion.h3>

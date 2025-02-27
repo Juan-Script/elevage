@@ -1,50 +1,55 @@
-# React + TypeScript + Vite
+# Elevage 🌿
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Elevage es una aplicación web moderna desarrollada con React y TypeScript, diseñada para proporcionar una experiencia de usuario fluida y elegante. Su principal objetivo es ayudar a los usuarios a entender palabras concretas de una manera rápida y sencilla, funcionando como una herramienta eficiente de consulta y aprendizaje de vocabulario.
 
-Currently, two official plugins are available:
+## 🚀 Características
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Interfaz de usuario moderna con Tailwind CSS
+- Desarrollada con React y TypeScript
+- Bundling con Vite para un rendimiento óptimo
+- Soporte para iconos con react-icons
+- Integración con LangChain y Groq
 
-## Expanding the ESLint configuration
+## 📋 Prerrequisitos
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- Node.js (versión LTS recomendada)
+- npm o yarn
 
-- Configure the top-level `parserOptions` property like this:
+## 🛠️ Instalación
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+1. Clona el repositorio:
+```bash
+git clone https://github.com/tu-usuario/elevage.git
+cd elevage
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+2. Instala las dependencias:
+```bash
+npm install
+```
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+## 🚀 Scripts Disponibles
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
+- `npm run dev` - Inicia el servidor de desarrollo
+- `npm run build` - Compila el proyecto para producción
+- `npm run lint` - Ejecuta el linter
+- `npm run preview` - Previsualiza la build de producción
+
+## 🔧 Tecnologías Principales
+
+- React 19
+- TypeScript
+- Tailwind CSS
+- Vite
+- LangChain
+- Groq
+
+## 📁 Estructura del Proyecto
+
+```
+elevage/
+├── src/           # Código fuente
+├── public/        # Archivos estáticos
+├── dist/         # Build de producción
+└── ...
 ```

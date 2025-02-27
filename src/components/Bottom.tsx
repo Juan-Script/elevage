@@ -2,11 +2,13 @@ import { BsStars } from "react-icons/bs";
 import { HiOutlineDuplicate, HiOutlineBookmark } from "react-icons/hi";
 import { useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
+import { LocalStorageService } from '../shared/services/localStorage.service';
+import { ExplanationTypes } from '../shared/utils/Types/ExplanationTypes';
 
 interface BottomProps {
   selectedText?: string;
   explanation?: string;
-  level?: string;
+  level?: ExplanationTypes;
   onRegenerateExplanation: () => void;
   isLoading: boolean;
 }
@@ -14,7 +16,7 @@ interface BottomProps {
 interface SavedExplanation {
   text: string;
   explanation: string;
-  level: string;
+  level: ExplanationTypes;
   timestamp: number;
 }
 
@@ -44,12 +46,7 @@ export default function Bottom({ selectedText, explanation, level, onRegenerateE
     };
 
     try {
-      const result = await chrome.storage.local.get(['savedExplanations']);
-      const savedExplanations: SavedExplanation[] = result.savedExplanations || [];
-
-      const updatedExplanations = [...savedExplanations, newExplanation];
-
-      await chrome.storage.local.set({ savedExplanations: updatedExplanations });
+      await LocalStorageService.saveExplanation(newExplanation);
 
       toast.success('¡Explicación guardada con éxito!', {
         duration: 2000,

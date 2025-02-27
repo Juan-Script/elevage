@@ -1,7 +1,6 @@
-interface TextMessage {
-    type: 'TEXT_SELECTED' | 'UPDATE_SELECTED_TEXT';
-    text: string;
-}
+import { TextMessage } from "../shared/utils/Types/TextMessageTypes";
+import { LocalStorageService } from '../shared/services/localStorage.service';
+
 
 chrome.runtime.onInstalled.addListener(() => {
     chrome.contextMenus.create({
@@ -13,7 +12,7 @@ chrome.runtime.onInstalled.addListener(() => {
 
 chrome.contextMenus.onClicked.addListener((info) => {
     if (info.menuItemId === 'explain-with-elevage' && info.selectionText) {
-        chrome.storage.local.set({ selectedText: info.selectionText }, () => {
+        LocalStorageService.setSelectedText(info.selectionText).then(() => {
             chrome.action.openPopup();
         });
     }

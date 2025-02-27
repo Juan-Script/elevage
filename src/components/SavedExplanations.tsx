@@ -3,6 +3,8 @@ import { HiMiniXMark } from 'react-icons/hi2';
 import { motion, AnimatePresence } from 'framer-motion';
 import CardExplanation from './CardExplanation';
 import toast, { Toaster } from 'react-hot-toast';
+import { formatDate } from '../shared/utils/functions/FormatDate';
+import { LocalStorageService } from '../shared/services/localStorage.service';
 
 interface SavedExplanation {
     text: string;
@@ -23,16 +25,15 @@ export default function SavedExplanations({ onClose }: SavedExplanationsProps) {
     }, []);
 
     const loadSavedExplanations = async () => {
-        const result = await chrome.storage.local.get(['savedExplanations']);
-        setSavedExplanations(result.savedExplanations || []);
+        const explanations = await LocalStorageService.getSavedExplanations();
+        setSavedExplanations(explanations);
     };
 
     const handleDelete = async (timestamp: number) => {
         try {
-            const updatedExplanations = savedExplanations.filter(exp => exp.timestamp !== timestamp);
-            await chrome.storage.local.set({ savedExplanations: updatedExplanations });
+            const updatedExplanations = await LocalStorageService.deleteExplanation(timestamp);
             setSavedExplanations(updatedExplanations);
-            
+
             toast.success('Explicación eliminada correctamente', {
                 duration: 2000,
                 position: 'bottom-center',
@@ -50,12 +51,7 @@ export default function SavedExplanations({ onClose }: SavedExplanationsProps) {
         }
     };
 
-    const formatDate = (timestamp: number) => {
-        const date = new Date(timestamp);
-        const day = date.getDate();
-        const month = date.toLocaleString('es-ES', { month: 'long' });
-        return `${day} de ${month}`;
-    };
+
 
     return (
         <motion.div
@@ -65,15 +61,23 @@ export default function SavedExplanations({ onClose }: SavedExplanationsProps) {
             className="absolute w-[350px] inset-0 !bg-[#FFF] dark:bg-gray-900 z-50 flex flex-col"
         >
             <Toaster />
-            <div className="flex justify-between items-center p-4 bg-white dark:bg-gray-900 sticky top-0 z-10">
-                <h2 className="text-xl font-bold text-[#266966]">Explicaciones Guardadas</h2>
+            <div
+                className="flex justify-between items-center p-4 bg-white dark:bg-gray-900 sticky top-0 z-10"
+            >
+                <h2
+                    className="text-xl font-bold text-[#266966]"
+                >
+                    Explicaciones Guardadas
+                </h2>
                 <HiMiniXMark
                     onClick={onClose}
                     className="cursor-pointer hover:opacity-70 text-[15px]"
                 />
             </div>
 
-            <div className="p-4 mt-[10px]">
+            <div
+                className="p-4 mt-[10px]"
+            >
                 <AnimatePresence>
                     {savedExplanations.length === 0 ? (
                         <motion.div
@@ -84,7 +88,9 @@ export default function SavedExplanations({ onClose }: SavedExplanationsProps) {
                             No hay explicaciones guardadas
                         </motion.div>
                     ) : (
-                        <div className="flex flex-col gap-[10px] h-[540px] overflow-y-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
+                        <div
+                            className="flex flex-col gap-[10px] h-[540px] overflow-y-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]"
+                        >
                             {savedExplanations.map((exp) => (
                                 <CardExplanation
                                     key={exp.timestamp}

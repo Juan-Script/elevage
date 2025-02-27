@@ -1,10 +1,12 @@
+import { ExplanationTypes } from '../shared/utils/Types/ExplanationTypes';
+
 interface LevelSelectorProps {
-  selectedLevel: string;
-  onLevelChange: (level: string) => void;
+  selectedLevel: ExplanationTypes;
+  onLevelChange: (level: ExplanationTypes) => void;
 }
 
 export default function LevelSelector({ selectedLevel, onLevelChange }: LevelSelectorProps) {
-  const handleSelect = (level: string) => {
+  const handleSelect = (level: ExplanationTypes) => {
     onLevelChange(level);
   };
 
@@ -13,22 +15,22 @@ export default function LevelSelector({ selectedLevel, onLevelChange }: LevelSel
       className="flex w-fit rounded-full bg-[#F2F3F3] p-[4px] gap-[10px] text-[14px] text-[#000] mx-auto font-medium mb-[10px]"
     >
       <div
-        onClick={() => handleSelect('Básico')}
-        className={`cursor-pointer rounded-full py-[4px] px-[7px] transition-all duration-300 ${selectedLevel === 'Básico' ? 'bg-[#FFF] text-[#266966] shadow-[0px_4px_4px_0px_rgba(0,0,0,0.10)]' : ''}`}
+        onClick={() => handleSelect(ExplanationTypes.BASIC)}
+        className={`cursor-pointer rounded-full py-[4px] px-[7px] transition-all duration-300 ${selectedLevel === ExplanationTypes.BASIC ? 'bg-[#FFF] text-[#266966] shadow-[0px_4px_4px_0px_rgba(0,0,0,0.10)]' : ''}`}
       >
-        Básico
+        {ExplanationTypes.BASIC}
       </div>
       <div
-        onClick={() => handleSelect('Moderado')}
-        className={`cursor-pointer rounded-full py-[4px] px-[7px] transition-all duration-300 ${selectedLevel === 'Moderado' ? 'bg-[#FFF] text-[#266966] shadow-[0px_4px_4px_0px_rgba(0,0,0,0.10)]' : ''}`}
+        onClick={() => handleSelect(ExplanationTypes.MODERATE)}
+        className={`cursor-pointer rounded-full py-[4px] px-[7px] transition-all duration-300 ${selectedLevel === ExplanationTypes.MODERATE ? 'bg-[#FFF] text-[#266966] shadow-[0px_4px_4px_0px_rgba(0,0,0,0.10)]' : ''}`}
       >
-        Moderado
+        {ExplanationTypes.MODERATE}
       </div>
       <div
-        onClick={() => handleSelect('Extenso')}
-        className={`cursor-pointer rounded-full py-[4px] px-[7px] transition-all duration-300 ${selectedLevel === 'Extenso' ? 'bg-[#FFF] text-[#266966] shadow-[0px_4px_4px_0px_rgba(0,0,0,0.10)]' : ''}`}
+        onClick={() => handleSelect(ExplanationTypes.EXTENSIVE)}
+        className={`cursor-pointer rounded-full py-[4px] px-[7px] transition-all duration-300 ${selectedLevel === ExplanationTypes.EXTENSIVE ? 'bg-[#FFF] text-[#266966] shadow-[0px_4px_4px_0px_rgba(0,0,0,0.10)]' : ''}`}
       >
-        Extenso
+        {ExplanationTypes.EXTENSIVE}
       </div>
     </div>
   );

@@ -6,11 +6,9 @@ import LevelSelector from './LevelSelector';
 import TopBar from './TopBar';
 import SavedExplanations from './SavedExplanations';
 import { motion, AnimatePresence } from 'framer-motion';
-
-interface TextMessage {
-  type: 'TEXT_SELECTED' | 'UPDATE_SELECTED_TEXT';
-  text: string;
-}
+import { TextMessage } from '../shared/utils/Types/TextMessageTypes';
+import { LocalStorageService } from '../shared/services/localStorage.service';
+import { ExplanationTypes } from '../shared/utils/Types/ExplanationTypes';
 
 interface MessageResponse {
   success: boolean;
@@ -21,7 +19,7 @@ export default function Content() {
   const [selectedText, setSelectedText] = useState<string>('');
   const [explanation, setExplanation] = useState<string>('');
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [selectedLevel, setSelectedLevel] = useState<string>('Básico');
+  const [selectedLevel, setSelectedLevel] = useState<ExplanationTypes>(ExplanationTypes.BASIC);
   const [showSaved, setShowSaved] = useState<boolean>(false);
 
   const generateExplanation = useCallback(async (text: string) => {
@@ -46,16 +44,23 @@ export default function Content() {
   }, [selectedText, isLoading, generateExplanation]);
 
   useEffect(() => {
-    chrome.storage.local.get(['selectedText', 'selectedLevel'], async (result) => {
-      if (result.selectedLevel) {
-        setSelectedLevel(result.selectedLevel);
+    const initializeContent = async () => {
+      const [storedText, storedLevel] = await Promise.all([
+        LocalStorageService.getSelectedText(),
+        LocalStorageService.getSelectedLevel()
+      ]);
+
+      if (storedLevel) {
+        setSelectedLevel(storedLevel);
       }
-      if (result.selectedText) {
-        setSelectedText(result.selectedText);
-        await generateExplanation(result.selectedText);
-        chrome.storage.local.remove('selectedText');
+      if (storedText) {
+        setSelectedText(storedText);
+        await generateExplanation(storedText);
+        await LocalStorageService.removeSelectedText();
       }
-    });
+    };
+
+    initializeContent();
 
     const handleMessage = async (message: TextMessage, _sender: chrome.runtime.MessageSender, sendResponse: (response: MessageResponse) => void) => {
       console.log('Mensaje recibido en Content:', message);
@@ -105,7 +110,7 @@ export default function Content() {
               selectedLevel={selectedLevel}
               onLevelChange={async (level) => {
                 setSelectedLevel(level);
-                chrome.storage.local.set({ selectedLevel: level });
+                await LocalStorageService.setSelectedLevel(level);
                 if (selectedText) {
                   setIsLoading(true);
                   try {

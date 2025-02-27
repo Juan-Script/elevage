@@ -51,13 +51,10 @@ export default function SavedExplanations({ onClose }: SavedExplanationsProps) {
     };
 
     const formatDate = (timestamp: number) => {
-        return new Date(timestamp).toLocaleDateString('es-ES', {
-            day: '2-digit',
-            month: '2-digit',
-            year: '2-digit',
-            hour: '2-digit',
-            minute: '2-digit'
-        });
+        const date = new Date(timestamp);
+        const day = date.getDate();
+        const month = date.toLocaleString('es-ES', { month: 'long' });
+        return `${day} de ${month}`;
     };
 
     return (

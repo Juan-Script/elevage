@@ -128,7 +128,7 @@ export default function Content() {
                   className="h-full flex flex-col p-4 bg-gray-50 dark:bg-gray-800 rounded-lg transition-colors duration-300"
                 >
                   <div
-                    className="flex w-fit gap-[5px] p-[10px] border-[1px] border-solid border-[#F0F0F0] rounded-[8px] py-[10px] mx-auto shadow-md my-[10px]"
+                    className="flex w-fit gap-[5px] p-[8px] border-[1px] border-solid border-[#F0F0F0] rounded-[8px] py-[10px] mx-auto shadow-md my-[5px]"
                   >
                     <p
                       className="mt-2 text-[14px] text-gray-700 dark:text-gray-300 font-bold mx-auto"
@@ -161,7 +161,7 @@ export default function Content() {
                           animate={{ opacity: 1, y: 0 }}
                           exit={{ opacity: 0, y: -20 }}
                           transition={{ duration: 0.5, ease: "easeOut" }}
-                          className="flex-1 mt-4 p-4 bg-white dark:bg-gray-700 rounded-lg shadow"
+                          className="flex-1 mt-4 p-4 px-[15px] bg-white dark:bg-gray-700 rounded-lg shadow"
                         >
                           <motion.h3
                             initial={{ opacity: 0 }}

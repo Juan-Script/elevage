@@ -26,7 +26,7 @@ export default function Bottom({ selectedText, onRegenerateExplanation, isLoadin
 
   return (
     <div
-      className="flex w-full justify-between items-center mt-[20px]"
+      className="flex w-full justify-between items-center mt-[10px]"
     >
       <div
         onClick={selectedText && !isLoading ? onRegenerateExplanation : undefined}

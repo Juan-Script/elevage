@@ -3,6 +3,7 @@ import { PulseLoader } from 'react-spinners';
 import { getWordExplanation } from '../services/wordExplanation';
 import Bottom from './Bottom';
 import LevelSelector from './LevelSelector';
+import { motion, AnimatePresence } from 'framer-motion';
 
 interface TextMessage {
   type: 'TEXT_SELECTED' | 'UPDATE_SELECTED_TEXT';
@@ -100,15 +101,15 @@ export default function Content() {
         />
         <div className="flex-1 mt-4 overflow-hidden">
           {selectedText ? (
-            <div className="h-full flex flex-col p-4 bg-gray-50 dark:bg-gray-800 rounded-lg">
+            <div className="h-full flex flex-col p-4 bg-gray-50 dark:bg-gray-800 rounded-lg transition-colors duration-300">
               <div
-                className="flex w-fit gap-[5px] p-[10px] border-[1px] border-solid border-[#F0F0F0] rounded-[8px] py-[10px] mx-auto"
+                className="flex w-fit gap-[5px] p-[10px] border-[1px] border-solid border-[#F0F0F0] rounded-[8px] py-[10px] mx-auto shadow-md my-[10px]"
               >
                 <p className="mt-2 text-[14px] text-gray-700 dark:text-gray-300 font-bold mx-auto">{selectedText}</p>
               </div>
 
               {isLoading ? (
-                <div className="flex flex-col justify-center items-center mt-4 bg-gradient-to-b from-blue-100 to-blue-300 rounded-lg p-8 py-[70px]">
+                <div className="flex flex-col justify-center items-center mt-4 bg-gradient-to-b from-blue-100 to-blue-300 dark:from-blue-800 dark:to-blue-600 rounded-lg p-8 py-[70px]">
                   <PulseLoader
                     color="#266966"
                     size={15}
@@ -116,20 +117,43 @@ export default function Content() {
                     speedMultiplier={0.8}
                   />
                   <p className="mt-6 text-center text-gray-700 dark:text-gray-300">
-                    Preparando explicación... Esto llevará solo unos segundos
+                    Preparando explicación... <br/>Esto llevará solo unos segundos
                   </p>
                 </div>
-              ) : explanation && (
-                <div className="flex-1 mt-4 p-4 bg-white dark:bg-gray-700 rounded-lg shadow">
-                  <h3 className="text-lg font-semibold mb-2 text-[#266966]">Explicación:</h3>
-                  <div className="max-h-[365px] overflow-y-auto text-gray-700 dark:text-gray-300 mt-[10px]
-                    scrollbar-thin scrollbar-thumb-[#266966] scrollbar-track-gray-200 
-                    scrollbar-thumb-rounded-full scrollbar-track-rounded-full 
-                    hover:scrollbar-thumb-[#1a4b49] scroll-smooth
-                    [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
-                    {explanation}
-                  </div>
-                </div>
+              ) : (
+                <AnimatePresence mode="wait">
+                  {explanation && (
+                    <motion.div 
+                      key="explanation"
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -20 }}
+                      transition={{ duration: 0.5, ease: "easeOut" }}
+                      className="flex-1 mt-4 p-4 bg-white dark:bg-gray-700 rounded-lg shadow"
+                    >
+                      <motion.h3 
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ delay: 0.2 }}
+                        className="text-lg font-semibold mb-2 text-[#266966]"
+                      >
+                        Explicación:
+                      </motion.h3>
+                      <motion.div 
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ delay: 0.3 }}
+                        className="max-h-[360px] overflow-y-auto text-gray-700 dark:text-gray-300 mt-[10px]
+                          scrollbar-thin scrollbar-thumb-[#266966] scrollbar-track-gray-200 
+                          scrollbar-thumb-rounded-full scrollbar-track-rounded-full 
+                          hover:scrollbar-thumb-[#1a4b49] scroll-smooth
+                          [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]"
+                      >
+                        {explanation}
+                      </motion.div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
               )}
             </div>
           ) : (

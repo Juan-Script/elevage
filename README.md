@@ -1,58 +1,58 @@
 # Elevage 🌿
 
-Elevage es una aplicación web moderna desarrollada con React y TypeScript, diseñada para proporcionar una experiencia de usuario fluida y elegante. Su principal objetivo es ayudar a los usuarios a entender palabras concretas de una manera rápida y sencilla, funcionando como una herramienta eficiente de consulta y aprendizaje de vocabulario.
+Elevage is a modern web application developed with React and TypeScript, designed to provide a smooth and elegant user experience. Its main purpose is to help users understand specific words quickly and easily, functioning as an efficient vocabulary lookup and learning tool.
 
-## 🎯 Funcionamiento
+## 🎯 How It Works
 
-1. **Selección de Palabra**: 
-   - Selecciona cualquier palabra o texto en tu navegador
-   - Haz clic derecho sobre la selección
-   - Elige la opción "Explicar con Elevage" en el menú contextual
+1. **Word Selection**: 
+   - Select any word or text in your browser
+   - Right-click on the selection
+   - Choose "Explain with Elevage" from the context menu
 
-2. **Niveles de Explicación**:
-   - **Básico**: Explicación concisa con definición básica y ejemplo corto
-   - **Moderado**: Explicación más detallada con ejemplos y contexto de uso
-   - **Extenso**: Explicación completa con ejemplos, contexto histórico, sinónimos y antónimos
+2. **Explanation Levels**:
+   - **Basic**: Concise explanation with basic definition and short example
+   - **Moderate**: More detailed explanation with examples and usage context
+   - **Extensive**: Complete explanation with examples, historical context, synonyms, and antonyms
 
-3. **Funciones Adicionales**:
-   - Botón "Otra explicación" para obtener diferentes perspectivas de la misma palabra
-   - Opción de copiar la explicación al portapapeles
-   - Interfaz adaptable y fácil de usar
+3. **Additional Features**:
+   - "Another explanation" button to get different perspectives of the same word
+   - Option to copy the explanation to clipboard
+   - Adaptive and user-friendly interface
 
-## 🚀 Características
+## 🚀 Features
 
-- Interfaz de usuario moderna con Tailwind CSS
-- Desarrollada con React y TypeScript
-- Bundling con Vite para un rendimiento óptimo
-- Soporte para iconos con react-icons
-- Integración con LangChain y Groq
+- Modern user interface with Tailwind CSS
+- Built with React and TypeScript
+- Bundling with Vite for optimal performance
+- Icon support with react-icons
+- Integration with LangChain and Groq
 
-## 📋 Prerrequisitos
+## 📋 Prerequisites
 
-- Node.js (versión LTS recomendada)
-- npm o yarn
+- Node.js v22.14.0
+- npm or yarn
 
-## 🛠️ Instalación
+## 🛠️ Installation
 
-1. Clona el repositorio:
+1. Clone the repository:
 ```bash
-git clone https://github.com/tu-usuario/elevage.git
+git clone https://github.com/your-username/elevage.git
 cd elevage
 ```
 
-2. Instala las dependencias:
+2. Install dependencies:
 ```bash
 npm install
 ```
 
-## 🚀 Scripts Disponibles
+## 🚀 Available Scripts
 
-- `npm run dev` - Inicia el servidor de desarrollo
-- `npm run build` - Compila el proyecto para producción
-- `npm run lint` - Ejecuta el linter
-- `npm run preview` - Previsualiza la build de producción
+- `npm run dev` - Starts the development server
+- `npm run build` - Builds the project for production
+- `npm run lint` - Runs the linter
+- `npm run preview` - Previews the production build
 
-## 🔧 Tecnologías Principales
+## 🔧 Core Technologies
 
 - React 19
 - TypeScript
@@ -61,12 +61,12 @@ npm install
 - LangChain
 - Groq
 
-## 📁 Estructura del Proyecto
+## 📁 Project Structure
 
 ```
 elevage/
-├── src/           # Código fuente
-├── public/        # Archivos estáticos
-├── dist/         # Build de producción
+├── src/           # Source code
+├── public/        # Static files
+├── dist/         # Production build
 └── ...
 ```

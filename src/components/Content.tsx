@@ -9,6 +9,7 @@ import { TextMessage } from '../shared/utils/Types/TextMessageTypes';
 import { LocalStorageService } from '../shared/services/localStorage.service';
 import { ExplanationTypes } from '../shared/utils/Types/ExplanationTypes';
 import { getWordExplanation } from '../shared/services/langChain.service';
+import ReactMarkdown from 'react-markdown';
 
 interface MessageResponse {
   success: boolean;
@@ -184,9 +185,12 @@ export default function Content() {
                               scrollbar-thin scrollbar-thumb-[#266966] scrollbar-track-gray-200 
                               scrollbar-thumb-rounded-full scrollbar-track-rounded-full 
                               hover:scrollbar-thumb-[#1a4b49] scroll-smooth
-                              [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]"
+                              [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]
+                              prose prose-sm dark:prose-invert max-w-none"
                           >
-                            {explanation}
+                            <ReactMarkdown>
+                              {explanation?.replace(/\n/g, '\n\n')}
+                            </ReactMarkdown>
                           </motion.div>
                         </motion.div>
                       )}
